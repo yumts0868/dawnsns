@@ -52,7 +52,12 @@ class RegisterController extends Controller
             'username' => 'required|string|max:255',
             'mail' => 'required|string|email|max:255|unique:users',
             'password' => 'required|string|min:4|confirmed',
-        ])->validate();
+        ], [
+            'required' => '必須項目です',
+            'max' => '255文字以内で入力してください',
+            'unique' => 'すでに使われています',
+            'onfirmed' => 'パスワードが異なります',
+        ]);;
     }
 
     /**
@@ -79,9 +84,15 @@ class RegisterController extends Controller
     {
         if ($request->isMethod('post')) {
             $data = $request->input();
-            $this->validator($data);
-            $this->create($data);
-            return redirect('added')->with(['name' => $data['username']]);
+            $val = $this->validator($data);
+            if ($val->fails()) {
+                return redirect('register')
+                    ->withErrors($val)
+                    ->withInput();
+            } else {
+                $this->create($data);
+                return redirect('added')->with(['name' => $data['username']]);
+            }
         }
         return view('auth.register');
     }

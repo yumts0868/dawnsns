@@ -2,8 +2,44 @@
 
 html{
     height: 100%;
+    color: #FFFEFE;
 }
+
 body{
     height: 100%;
-    background: #3C4767;
+    background: transparent linear-gradient(180deg, #3C4767 0%, #3C4767 60%, #DF563B 100%) 0% 0% no-repeat padding-box;
+}
+
+header{
+margin: 188px;
+text-align: center;
+font-size: 28px;
+}
+
+#container{
+width: 280px;
+margin:0 auto;
+background: #0000002B 0% 0% no-repeat padding-box;
+}
+
+#container p{
+text-align: center;
+padding: 31px;
+font: normal normal normal 14px/21px Meiryo;
+letter-spacing: 0px;
+color: #FFFEFE;
+}
+
+a{
+color: #FFFEFE;
+}
+
+input[type="submit"] {
+color:#FFFEFE;
+background-color:#4B71CAB3;
+
+}
+
+h2{
+    padding: 71px;
 }

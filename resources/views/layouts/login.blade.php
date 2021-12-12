@@ -18,22 +18,29 @@
     <!--iphoneのアプリアイコン指定-->
     <link rel="apple-touch-icon-precomposed" href="画像のURL" />
     <!--OGPタグ/twitterカード-->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="crossorigin="anonymous"></script>
+    <script src="{{ asset('/js/script.js') }}"></script>
 </head>
 <body>
     <header>
-        <div id = "head">
-        <h1><a><img src="images/logo.png"></a></h1>
-            <div id="">
-                <div id="">
-                    <p>〇〇さん<img src="images/arrow.png"></p>
-                <div>
-                <ul>
-                    <li><a href="/top">ホーム</a></li>
-                    <li><a href="/profile">プロフィール</a></li>
-                    <li><a href="/logout">ログアウト</a></li>
-                </ul>
-            </div>
+    <div class ="wrapper clear">
+        <div id = "header-left">
+        <h1><a href="/top"><img class="mainlogo" src="images/main_logo.png"></a></h1>
         </div>
+                <div id="header-right">
+                    <p>{{$username}}さん<img class="icon" src="images/dawn.png"></p>
+                <ul class="accordion-area">
+                    <li><section>
+                            <h3 class="title"></h3>
+                            <div class="box">
+                    <li class="box-title"><a href="/top">ホーム</a></li>
+                    <li class="box-title"><a href="/profile">プロフィール編集</a></li>
+                    <li class="box-title"><a href="/logout">ログアウト</a></li>
+                    </div>
+                            </section></li>
+                </ul>
+                </div>
+    </div>
     </header>
     <div id="row">
         <div id="container">
@@ -41,19 +48,19 @@
         </div >
         <div id="side-bar">
             <div id="confirm">
-                <p>〇〇さんの</p>
+                <p>{{$username}}さんの</p>
                 <div>
                 <p>フォロー数</p>
-                <p>〇〇名</p>
+                <p>{{$countFollow}}名</p>
                 </div>
-                <p class="btn"><a href="">フォローリスト</a></p>
+                <p class="btn"><a href="/follow-list">フォローリスト</a></p>
                 <div>
                 <p>フォロワー数</p>
-                <p>〇〇名</p>
+                <p>{{$countFollow}}名</p>
                 </div>
-                <p class="btn"><a href="">フォロワーリスト</a></p>
+                <p class="btn"><a href="/follower-list">フォロワーリスト</a></p>
             </div>
-            <p class="btn"><a href="">ユーザー検索</a></p>
+            <p class="btn"><a href="/search">ユーザー検索</a></p>
         </div>
     </div>
     <footer>

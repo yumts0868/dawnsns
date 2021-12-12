@@ -49,14 +49,14 @@ class RegisterController extends Controller
     protected function validator(array $data)
     {
         return Validator::make($data, [
-            'username' => 'required|string|max:255',
-            'mail' => 'required|string|email|max:255|unique:users',
-            'password' => 'required|string|min:4|confirmed',
+            'username' => 'required|string|min:4|max:12',
+            'mail' => 'required|string|email|max:225|unique:users',
+            'password' => 'required|string|min:4|max:12|unique:users|confirmed',
         ], [
             'required' => '必須項目です',
             'max' => '255文字以内で入力してください',
             'unique' => 'すでに使われています',
-            'onfirmed' => 'パスワードが異なります',
+            'confirmed' => 'パスワードが異なります',
         ]);;
     }
 

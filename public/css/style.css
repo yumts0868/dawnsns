@@ -193,11 +193,12 @@ hr.border-sideber {
     padding: 0 15px 12.5px 17px;
 }
 
-.wrap-post-icon img {
+.wrap-post-icon{
     border: 1px solid #D7D7D7;
     width: 51px;
     height: 51px;
     margin-top: 28px;
+    border-radius:50%;
 }
 
 .wrap-post-form {
@@ -299,6 +300,10 @@ hr.border-post {
   }
 
 /* 検索フォーム */
+.search-p{
+    width: 60px;
+    transform: rotateY( 180deg );
+}
 .wrap-search {
     display: flex;
     align-items: center;

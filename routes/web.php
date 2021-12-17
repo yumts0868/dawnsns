@@ -35,17 +35,21 @@ Route::get('/added', 'Auth\RegisterController@added');
 Route::get('/top', 'PostsController@index');
 //プロフィール編集
 Route::get('/profile', 'UsersController@profile');
+Route::post('/profile/update', 'UsersController@update');
 //ユーザー検索フォーム
 Route::get('/search', 'UsersController@search');
-//フォローリスト
-Route::get('/follow-list', 'PostsController@index');
-Route::get('/follower-list', 'PostsController@index');
-
+Route::post('/result', 'UsersController@result');
+//フォローリスト,フォロワーリスト,プロフィール画面
+Route::get('/follow-list', 'FollowsController@followList');
+Route::get('/follower-list', 'FollowsController@followerList');
+Route::get('/fp/{id}', 'FollowsController@fp');
+//フォローするはずす
+Route::post('/follow', 'FollowsController@follow');
+Route::post('/unfollow', 'FollowsController@unfollow');
+//投稿編集
 Route::post('/create', 'PostsController@create');
-
-Route::post('/delete/{id}', 'PostsController@delete');
 Route::post('/edit/{id}', 'PostsController@edit');
-
+Route::post('/delete/{id}', 'PostsController@delete');
 
 //ログアウト
 Route::get('/logout', 'Auth\LoginController@logout');

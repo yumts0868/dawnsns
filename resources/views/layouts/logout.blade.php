@@ -27,6 +27,8 @@
     <div id="container">
         @yield('content')
     </div >
+        <footer>
+    </footer>
     <script src="JavaScriptファイルのURL"></script>
     <script src="JavaScriptファイルのURL"></script>
 </body>

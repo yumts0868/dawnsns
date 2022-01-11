@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Auth;
+use Illuminate\Support\Facades\Validator;
+use App\User;
 
 class UsersController extends Controller
 {
@@ -14,34 +16,104 @@ class UsersController extends Controller
         return view('users.profile', compact('user'));
     }
 
+    /**
+     * Get a validator for an incoming registration request.
+     *
+     * @param  array  $data
+     * @return \Illuminate\Contracts\Validation\Validator
+     */
+
+    protected function validator(array $user)
+    {
+        return Validator::make($user, [
+            'username' => 'string|min:4|max:12',
+            'mail' => 'string|email|max:225',
+            'newpass' => 'nullable|string|alpha_num|min:4|max:12|unique:users,password',
+            'bio' => 'nullable|string|max:200',
+            'images' => 'nullable|image',
+        ], [
+            'required' => '必須項目です',
+            'min' => '4文字以上でお願いします',
+            'username.max' => '12文字以内でお願いします',
+            'mail.max' => '255文字以内で入力してください',
+            'unique' => 'すでに使われています',
+            'alpha_num' => '半角英数字でお願いします',
+            'email' => 'メールアドレスでお願いします',
+            'bio.max' => '200文字以内で入力してください',
+            'image' => '画像ファイルでお願いします',
+        ]);;
+    }
+
 
     public function update(Request $request)
     {
-        $up = $request->input();
-
-        if (isset($up)) {
-            $file_name = $request->file('image')->getClientOriginalName();
-            $request->file('image')->storeAs('images', $file_name, 'root_public');
-
-            $user = Auth::user();
-            $user->username = $request->newname;
-            $user->mail = $request->newmail;
-            $user->password = bcrypt($request->newpass);
-            $user->bio = $request->newbio;
-            $user->images = $file_name;
-            $user->save();
-            return redirect('/profile');
-        } else {
-            $user = Auth::user();
-            $user->username = $request->newname;
-            $user->mail = $request->newmail;
-            $user->bio = $request->newbio;
-            $user->save();
-            return redirect('/profile');
+        $user = $request->input();
+        $file = $request->file('image');
+        //バリデーションの処理
+        if (isset($user)) {
+            $val = $this->validator($user);
+            if ($val->fails()) {
+                return redirect('/profile')
+                    ->withErrors($val)
+                    ->withInput();
+            }
+            //パスワードとアイコン両方入っている場合
+            if (isset($user['newpass']) && isset($file)) {
+                $file_name = $file->getClientOriginalName();
+                $file->storeAs('images', $file_name, 'image_pass');
+                \DB::table('users')
+                    ->where('id', Auth::id())
+                    ->update(
+                        [
+                            'username' => $user['username'],
+                            'mail' => $user['mail'],
+                            'password' => $user['newpass'],
+                            'bio' => $user['bio'],
+                            'images' => $file_name
+                        ]
+                    );
+            }
+            //パスワードのみ入っていた場合
+            elseif (isset($user['newpass']) && !isset($file)) {
+                \DB::table('users')
+                    ->where('id', Auth::id())
+                    ->update(
+                        [
+                            'username' => $user['username'],
+                            'mail' => $user['mail'],
+                            'password' => $user['newpass'],
+                            'bio' => $user['bio']
+                        ]
+                    );
+                //アイコンのみ入っていた場合
+            } elseif (!isset($user['newpass']) && isset($file)) {
+                $file_name = $file->getClientOriginalName();
+                $file->storeAs('images', $file_name, 'image_pass');
+                \DB::table('users')
+                    ->where('id', Auth::id())
+                    ->update(
+                        [
+                            'username' => $user['username'],
+                            'mail' => $user['mail'],
+                            'bio' => $user['bio'],
+                            'images' => $file_name
+                        ]
+                    );
+            } else {
+                \DB::table('users')
+                    ->where('id', Auth::id())
+                    ->update(
+                        [
+                            'username' => $user['username'],
+                            'mail' => $user['mail'],
+                            'bio' => $user['bio']
+                        ]
+                    );
+            }
+            //dd($user);
+            return redirect('/top');
         }
-        /* return view('users.profile', compact('user')); */
     }
-
 
     //サーチに＄リストに入っているユーザー情報を送る
     public function search()
@@ -54,10 +126,10 @@ class UsersController extends Controller
     //ユーザー検索結果表示
     public function result(Request $request)
     {
-        $word = $request->search;
+        $word = $request->input('search');
         $list = \DB::table('users')
             ->where('username', 'like', "%$word%")
             ->get();
-        return view('users.search', ['list' => $list]);
+        return view('users.search', compact('word', 'list'));
     }
 }

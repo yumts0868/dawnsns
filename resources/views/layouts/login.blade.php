@@ -6,8 +6,8 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="description" content="ページの内容を表す文章" />
     <title></title>
-    <link rel="stylesheet" href="css/reset.css">
-    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="{{ asset('css/reset.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/style.css') }}">
     <!--スマホ,タブレット対応-->
     <meta name="viewport" content="width=device-width,initial-scale=1" />
     <!--サイトのアイコン指定-->
@@ -25,20 +25,18 @@
     <header>
     <div class ="wrapper clear">
         <div id = "header-left">
-        <h1><a href="/top"><img class="mainlogo" src="images/main_logo.png"></a></h1>
+        <h1><a href="/top"><img class="mainlogo" src="{{ asset('images/main_logo.png') }}"></a></h1>
         </div>
                 <div id="header-right">
-                    <p>{{$username}}さん<img class="icon" src="images/dawn.png"></p>
+                    <div class="header-name">{{$username}}さん
+                    <div class="title"></div>
+                    </div>
                 <ul class="accordion-area">
-                    <li><section>
-                            <h3 class="title"></h3>
-                            <div class="box">
                     <li class="box-title"><a href="/top">ホーム</a></li>
                     <li class="box-title"><a href="/profile">プロフィール編集</a></li>
                     <li class="box-title"><a href="/logout">ログアウト</a></li>
-                    </div>
-                            </section></li>
                 </ul>
+                    <img class="icon" src="{{ asset('images/'.$images) }}">
                 </div>
     </div>
     </header>
@@ -48,19 +46,21 @@
         </div >
         <div id="side-bar">
             <div id="confirm">
-                <p>{{$username}}さんの</p>
-                <div>
-                <p>フォロー数</p>
-                <p>{{$countFollow}}名</p>
+                <p class="side-name">{{$username}}さんの</p>
+                <div class="follow-number">
+                <div class="number">フォロー数</div>
+                <div class="count">{{$countFollow}}名</div>
                 </div>
-                <p class="btn"><a href="/follow-list">フォローリスト</a></p>
-                <div>
-                <p>フォロワー数</p>
-                <p>{{$countFollower}}名</p>
+                <p class="btn-sidebar"><a href="/follow-list">フォローリスト</a></p>
+                <div class="follow-number">
+                <div class="number">フォロワー数</div>
+                <div class="count">{{$countFollower}}名</div>
                 </div>
-                <p class="btn"><a href="/follower-list">フォロワーリスト</a></p>
+                <p class="btn-sidebar"><a href="/follower-list">フォロワーリスト</a></p>
             </div>
-            <p class="btn"><a href="/search">ユーザー検索</a></p>
+            <div class="search-link">
+            <p class="btn-search"><a href="/search">ユーザー検索</a></p>
+            </div>
         </div>
     </div>
     <footer>

@@ -48,8 +48,8 @@ Route::post('/follow', 'FollowsController@follow');
 Route::post('/unfollow', 'FollowsController@unfollow');
 //投稿編集
 Route::post('/create', 'PostsController@create');
-Route::post('/edit/{id}', 'PostsController@edit');
-Route::post('/delete/{id}', 'PostsController@delete');
+Route::post('/edit', 'PostsController@edit');
+Route::get('/delete/{id}', 'PostsController@delete');
 
 //ログアウト
 Route::get('/logout', 'Auth\LoginController@logout');

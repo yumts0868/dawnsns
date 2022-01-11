@@ -80,7 +80,7 @@ class RegisterController extends Controller
 
     public function register(Request $request)
     {
-        if ($request->isMethod('post')) {
+        if ($request->isMethod('post')) { //post通信(値が入っていたら)
             $data = $request->input();
             $val = $this->validator($data);
             if ($val->fails()) {

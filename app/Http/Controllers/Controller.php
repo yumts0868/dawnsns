@@ -33,6 +33,7 @@ class Controller extends BaseController
 
             //全ビューで共通で使えるよう渡してあげる。
             View::share('username', $username['username']);
+            View::share('images', $username['images']);
             View::share('countFollower', $countFollower);
             View::share('countFollow', $countFollow);
             View::share('followUser', $followUser);

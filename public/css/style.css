@@ -9,6 +9,9 @@ img{
 width: 55px;
 height: 55px;
 }
+li{
+    list-style-type: none;
+}
 
 .mainlogo{
 width: 150px;
@@ -34,24 +37,56 @@ header{
 /* main content */
 #row{
     display: flex;
-    flex-flow: row wrap;
 }
 #container{
     flex: 0 0 80%;
 }
+
+/*side-bar*/
 #side-bar{
     flex: 0 0 19%;
     border-left: 1px solid #6C6C6C;
 }
 
 #confirm {
-    margin: 0 26px 0 0;
+    margin: 20px 26px 0 0;
     padding: 0 15px 0 15px;
+}
+
+.header-name{
+    color: #ffffff;
+}
+
+.side-name{
+    font-size: 17px;
+}
+
+.follow-number{
+    font-size: 15px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.number{
+    margin: 10px 0 0 15px;
+}
+
+.count{
+    margin: 10px 0 0 0px;
+}
+
+.btn{
+        background-color: transparent;
+    border: none;
+    cursor: pointer;
+    outline: none;
+    padding: 0;
+    appearance: none;
 }
 
 .btn-sidebar {
     display: block;
-    margin: 0 0 13px auto;
+    margin: 26px 0 13px auto;
     width: 138px;
     padding: 11px 0;
     text-align: center;
@@ -61,9 +96,13 @@ header{
     border-radius: 5px;
 }
 
+.search-link{
+    border-top: 0.5px solid #C0C0C0;
+}
+
 .btn-search {
     display: block;
-    margin: auto;
+    margin: 30px auto;
     width: 138px;
     padding: 11px 0;
     text-align: center;
@@ -112,13 +151,6 @@ header{
     margin-bottom: 15px;
 }
 
-hr.border-sideber {
-    box-sizing:border-box;
-    width: 100%;
-    margin-bottom: 33px;
-    border: 1px solid #D7D7D7;
-}
-
 /* モーダル編集画面 */
 .modal-inner{
     display: none;
@@ -132,6 +164,12 @@ hr.border-sideber {
   top: 0;
   left: 0;
   z-index: 2;
+}
+
+.edit_text{
+    resize: none;
+  width:300px;
+  height:200px;
 }
 
 .inner-content{
@@ -173,6 +211,7 @@ hr.border-sideber {
 
 /*トップ右側*/
 #header-right{
+    display: flex;
     float: right;
     margin: auto;
     vertical-align: middle;
@@ -187,6 +226,18 @@ hr.border-sideber {
 }
 
 /* 投稿フォーム */
+.post-box{
+    border-bottom: 5px solid #C0C0C0;
+    position: relative;
+}
+
+.post-list{
+    border: 0.5px solid #C0C0C0;
+    padding-bottom: 30px;
+    display: flex ;
+    position: relative;
+}
+
 .wrap-post {
     display: flex;
     width: 100%;
@@ -194,7 +245,6 @@ hr.border-sideber {
 }
 
 .wrap-post-icon{
-    border: 1px solid #D7D7D7;
     width: 51px;
     height: 51px;
     margin-top: 28px;
@@ -202,12 +252,15 @@ hr.border-sideber {
 }
 
 .wrap-post-form {
-    width: 80%;
+    width: 60%;
     margin: 21px 19px 0 19px;
+    border: none;
 }
 
 .wrap-post-form-btn {
-    margin-top: auto;
+    position: absolute;
+    right:300px;
+    bottom: 10px;
 }
 
 
@@ -229,13 +282,47 @@ hr.border-sideber {
     height: 41px;
 }
 
-hr.border-post {
-    box-sizing:border-box;
-    width: 100%;
-    border: 2px solid #D7D7D7;
-    margin: auto;
+.list-icon{
+    width: 51px;
+    height: 51px;
+    margin-top: 20px;
+    margin-left: 40px;
+    margin-right: 28px;
+    border-radius:50%;
 }
 
+.list-name{
+    display: inline;
+    position: absolute;
+     margin-top: 30px;
+     font-size: 0.9rem;
+     color: #77787B;
+}
+
+.list-post{
+    display: inline;
+    margin-top: 5px;
+
+}
+
+.list-at{
+    white-space: nowrap;
+    margin: 30px 30px 0 0;
+}
+
+.edit-image .delete-image{
+    left: 100px;
+}
+
+.modal-btn{
+    display: flex;
+}
+
+.post-right{
+    position: absolute;
+    right: 0;
+    top: 0;
+}
 /* 編集 */
 .modal-main {
     display: none;
@@ -300,19 +387,38 @@ hr.border-post {
   }
 
 /* 検索フォーム */
+.search-box{
+    border-bottom: 5px solid #C0C0C0;
+    display: flex;
+}
+
 .search-p{
     width: 60px;
     transform: rotateY( 180deg );
+    padding: 5px 9px 5px 0;
+    margin: auto;
+    margin-left: 0px;
 }
-.wrap-search {
+
+.search-p:hover {
+    opacity: 0.5;
+}
+
+ .wrap-search {
     display: flex;
     align-items: center;
     width: 60%;
-    margin: 28px 0 24.5px 78px;
-
+    margin: 15px 0 15px 78px;
 }
 
-.btn-search-form {
+.search-word{
+    color: #77787B;
+    margin: auto;
+    margin-left: 0px;
+    font-size: 1.1rem;
+}
+
+/* .btn-search-form {
     background-color: #3C4767;
     border: none;
     border-radius: 5px;
@@ -322,13 +428,12 @@ hr.border-post {
 
 .btn-search-form:hover {
     opacity: 0.5;
-}
+} */
 
 .form-search {
     width: 391px;
-    height: 51px;
+    height: 20px;
     padding: 10px;
-    margin-right: 15px;
     border-radius: 5px;
     border: 1px solid #707070;
 }
@@ -337,13 +442,15 @@ hr.border-post {
     color: #D7D7D7;
     font-size: 18px;
 }
+
 /* ユーザー一覧 */
 
 .wrap-userlist {
     display: flex;
-    width: 80%;
+    width: 70%;
     align-items: center;
-    margin-bottom: 29px;
+    margin-bottom: 10px;
+    margin-left: 60px;
 }
 
 
@@ -352,17 +459,18 @@ hr.border-post {
 }
 
 .wrap-userlist-item img {
+    margin-top: 20px;
+    margin-left: 40px;
+    margin-right: 28px;
     border-radius: 50%;
     border: 1px solid #D7D7D7;
     width: 51px;
     height: 51px;
-    margin-right: 15px;
 }
 
 .wrap-userlist-item p {
     font-size: 18px;
-    margin: auto;
-    margin-right: 15px;
+    margin:40px 15px ;
 }
 
 .btn-follow {
@@ -373,6 +481,7 @@ hr.border-post {
     border: none;
     border-radius: 5px;
     font-size: 14px;
+    margin-top: 25px;
 }
 
 .btn-unfollow {
@@ -383,6 +492,7 @@ hr.border-post {
     border: none;
     border-radius: 5px;
     font-size: 14px;
+    margin-top: 25px;
 }
 
 .btn-follow:hover,
@@ -392,12 +502,9 @@ hr.border-post {
 
 /* プロフィール編集 */
 
-.wrap-profile {
-    display: flex;
-}
 
 .wrap-profile-icon {
-    margin: 39px 27px 0 116px;
+    margin: 0 27px 0 0;
 }
 
 .wrap-profile-icon img {
@@ -408,39 +515,89 @@ hr.border-post {
 }
 
 .form-group {
-    margin: 39px 0 0 0;
+
+    margin: 39px auto;
+    text-align: center;
     width: 80%;
 }
+
+.form-name{
+    display: flex;
+}
+
+.form-name p{
+    margin-top: 18px;
+}
+
 
 .form-profile {
     width: 280px;
     height: 30px;
     background: #F2F2F2;
     border-style: none none solid;
-    margin: 0 0 37px 0;
+    margin: 5px 0 37px 150px;
 }
 
-.form-profile-bio{
+.form-profile-newpass{
     width: 280px;
-    height: 72px;
+    height: 30px;
     background: #F2F2F2;
     border-style: none none solid;
-    margin: 0 0 37px 0;
-}
-
-.form-profile-img{
-    background: #F2F2F2;
-    border-style: none none solid;
-    margin: 0 0 37px 0;
+    margin: 5px 0 37px 120px;
 }
 
 .form-profile-pass {
     width: 280px;
     height: 30px;
-    background: #ffffff;
+    background: none;
     border-style: none none solid;
-    border-color: #6C6C6C;
-    margin: 0 0 37px 0;
+    margin: 5px 0 37px 160px;
+}
+
+.bio{
+    height:110px;
+    margin:5px 0 37px 210px;
+}
+
+.form-mail{
+    display: flex;
+}
+
+.form-mail p{
+    margin: 15px 0 0 80px;
+}
+
+.form-pass{
+    display: flex;
+    margin: 15px 0 15px 0;
+}
+
+.form-pass p{
+    margin: 15px 0 0 80px;
+}
+
+.form-newpass{
+    display: flex;
+}
+
+.form-newpass p{
+    margin: 15px 0 0 80px;
+}
+
+.form-bio{
+    display: flex;
+}
+
+.form-bio p{
+    margin: 15px 0 0 80px;
+}
+
+.form-img{
+    display: flex;
+}
+
+.form-img p{
+    margin: 15px 0 0 80px;
 }
 
 .btn-profile-edit {
@@ -475,14 +632,21 @@ input[type="file"] {
 
 
 /* フォローリスト */
-.follow-list {
-    width: 90%;
-    margin: 30.5px 27.5px 21px 34.5px;
+
+.followlist-box{
+    border-bottom: 5px solid #C0C0C0;
 }
 
-.wrap-icon {
+.follow-list {
+    display: flex;
     width: 90%;
-    margin: 30.5px 27.5px 21px 34.5px;
+    margin: 30.5px 27.5px 21px 100px;
+}
+
+.follow-title{
+    font-size: 1.7rem;
+    color: #72777B;
+    margin: 30px 50px;
 }
 
 .followlist-icon {
@@ -490,14 +654,29 @@ input[type="file"] {
     border-radius: 50%;
     width: 51px;
     height: 51px;
-    margin: 0 10px 10px 0;
+    margin: 0 10px 10px 20px;
+}
+
+.post-list{
+    position: relative;
+
 }
 
 /* 相手のプロフィール */
 
 .wrap-user {
     display: flex;
-    margin: 42px 0 0 83px;
+    position: relative;
+    padding: 42px 0 0 83px;
+    border-bottom: 5px solid #C0C0C0;
+}
+
+.wrap-user-left{
+    display: flex;
+}
+
+.wrap-fp-name{
+    display: flex;
 }
 
 .user-icon {
@@ -508,47 +687,56 @@ input[type="file"] {
     margin: 0 33px 10px 0;
 }
 
-.user-items {
-    display: flex;
-    flex-wrap: wrap;
-    width: 70%;
-    font-size: 20px;
-    margin-right: auto;
-}
-
-.user-item {
-    width: 120px;
-    margin-bottom: 30px;
-}
-
-.spacer {
-    width: 100%;
-  }
-
 .user-name {
-    font-size: 20px;
+    font-size: 18px;
 }
 
 .user-bio {
-    font-size: 14px;
+    font-size: 18px;
 }
 
-.user-item3 {
-    text-align: right;
-    margin: auto 20px 20px 20px;
+.wrap-user-right {
+    position: absolute;
+    right: 30px;
+    bottom: 15px;
+}
+
+.wrap-fp-bio{
+    display: flex;
+}
+
+.wrap-fp-bio p{
+    margin-top: 30px;
+    margin-bottom: 30px;
+}
+
+.name-title{
+    margin-right: 50px;
+}
+
+.bio-title{
+    margin-right: 70px;
 }
 
 /*アコーディオン全体*/
 .accordion-area{
-    list-style: none;
-    width: 96%;
-    max-width: 900px;
-    margin:0 auto;
+  position: fixed; /*表示位置を固定*/
+  z-index: 2; /*重ね順を変更*/
+  top: 11%; /*表示位置を指定*/
+  left: 77%; /*表示位置を指定*/
+  text-align: center; /*テキストを中央揃え*/
+  width: 20%;
+  height: 32%;
+  transform: translateY(-200%); /*ナビを上に隠す*/
+  transition: all 0.6s; /*アニメーションの時間を指定*/
+  border: 3px solid #C0C0C0;
 }
 
-.accordion-area li{
-    margin: 10px 0;
+.accordion-area.active{
+  transform: translateY(0%);
 }
+
+
 
 
 /*アコーディオンタイトル*/
@@ -585,11 +773,25 @@ input[type="file"] {
 }
 
 /*アコーディオンで現れるエリア*/
-.box {
+.accordion-area {
     display: none;/*はじめは非表示*/
     background: #f3f3f3;
   margin:0 3% 3% 3%;
-    padding: 3%;
+}
+
+.accordion-area a{
+    display: block;
+    padding-top:13%;
+    color: #000000;
+}
+
+.accordion-area a:hover{
+    color: #fff;
+}
+
+.box-title{
+    border:  0.5px solid #C0C0C0;
+    height: 33%;
 }
 
 .box-title:hover{

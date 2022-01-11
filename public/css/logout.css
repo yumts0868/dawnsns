@@ -1,12 +1,11 @@
 @chasert "utf-8";
 
 html{
-    height: 100%;
     color: #FFFEFE;
 }
 
 body{
-    height: 100%;
+
     background: transparent linear-gradient(180deg, #3C4767 0%, #3C4767 60%, #DF563B 100%) 0% 0% no-repeat padding-box;
 }
 
@@ -37,9 +36,38 @@ color: #FFFEFE;
 input[type="submit"] {
 color:#FFFEFE;
 background-color:#4B71CAB3;
-
+width: 60%;
+margin-right: 0;
 }
 
 h2{
     padding: 71px;
+}
+
+.login-box{
+    text-align: center;
+    padding: 0 55px
+}
+
+input{
+    display: block;
+    text-align: center;
+    margin: 0 auto;
+    border-radius: 5px;
+    border: none;
+    height: 23px;
+}
+
+label{
+    display: block;
+    text-align:left;
+}
+
+.login-pass{
+    margin-top: 30px ;
+    margin-bottom: 30px;
+}
+
+.login-btn{
+
 }
